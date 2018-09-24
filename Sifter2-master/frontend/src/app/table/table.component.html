@@ -1,0 +1,116 @@
+<div class="text">
+  <p>
+    Currently analyzing:
+  </p>
+</div>
+<mat-form-field style="margin-right:-24px" class="select">
+  <mat-select matInput placeholder="Select State" (selectionChange)="statechange($event)" style="margin-right:-24px">
+    <mat-option>None</mat-option>
+    <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field class="select">
+  <mat-select placeholder="Select City" (selectionChange)="citychange($event)">
+    <mat-option>None</mat-option>
+    <mat-option *ngFor="let city of cityvalue" [value]="city">{{city.city}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field style="margin-right: -10px" class="select">
+  <mat-select placeholder="Select zipcode" (selectionChange)="zipcodechange($event)" style="margin-right: -10px">
+    <mat-option>None</mat-option>
+    <mat-option *ngFor="let code of zipcodelist" [value]="code">{{code}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<!-- <button style="margin-left: 10px" mat-button>New Comments</button> -->
+<div class="example-container mat-elevation-z8">
+  <table mat-table #table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="ID">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="PercentSpread">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> PercentSpread </th>
+      <td mat-cell *matCellDef="let row"> {{row.percentSpread}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Address">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
+      <td mat-cell *matCellDef="let row"> {{row.address}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="City">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> City </th>
+      <td mat-cell *matCellDef="let row"> {{row.city}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="SubDivisionName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> SubDivisionName </th>
+      <td mat-cell *matCellDef="let row"> {{row.sub_division_name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="County">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> County </th>
+      <td mat-cell *matCellDef="let row"> {{row.county}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="PostalCode">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> PostalCode </th>
+      <td mat-cell *matCellDef="let row"> {{row.postal_code}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ListPrice">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ListPrice </th>
+      <td mat-cell *matCellDef="let row"> {{row.list_price}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="SqFtHead">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> SqFtHead </th>
+      <td mat-cell *matCellDef="let row"> {{row.sq_ft_heated}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="LegalDescription">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> LegalDescription </th>
+      <td mat-cell *matCellDef="let row"> {{row.legalDescription}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="TaxID">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> TaxID </th>
+      <td mat-cell *matCellDef="let row"> {{row.taxId}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="PropertyKey">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> PropertyKey </th>
+      <td mat-cell *matCellDef="let row"> {{row.property_key}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="UserAction">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> UserAction </th>
+      <td mat-cell *matCellDef="let row"> {{row.user_action}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="HistoricalSoldPrice ">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> HistoricalSoldPrice </th>
+      <td mat-cell *matCellDef="let row"> {{row.historical_high_sold_price_per_sq_ft}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+        <td mat-cell *matCellDef="let row"> {{row.status}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Year">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Year </th>
+          <td mat-cell *matCellDef="let row"> {{row.year}} </td>
+        </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator 
+  [pageSizeOptions]="[10,20,30,40,50]">
+  </mat-paginator>
+</div>

@@ -1,0 +1,392 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Sifter2 Application API",
+        "description": "Sifter2 Application API",
+        "license": {
+            "name": "Geppetto",
+            "url": "https://www.geppettosoftware.com/"
+        }
+    },
+    "host": "localhost:8002/",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "securityDefinitions": {
+        "Authorization": {
+            "in": "header",
+            "name": "Authorization",
+            "type": "apiKey"
+        }
+    },
+    "paths": {
+        "/api/Signup": {
+            "post": {
+                "tags": [
+                    "Reuser"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Create new User under Organisation",
+                        "schema": {
+                            "properties": {
+                                "accesstype": {
+                                    "type": "string"
+                                },
+                                "firstname": {
+                                    "type": "string"
+                                },
+                                "middlename":{
+                                    "type":"string"
+                                },
+                                "lastname":{
+                                    "type":"string"
+                                },
+                                "username":{
+                                    "type":"string"
+                                },
+                                "password":{
+                                    "type":"string"
+                                },
+                                "languagepreference":{
+                                    "type":"string"
+                                },
+                                "email":{
+                                    "type":"string"
+                                },
+                                "phonenumber":{
+                                    "type":"string"
+                                },
+                                "screenname":{
+                                    "type":"string"
+                                },
+                                "licenseid":{
+                                    "type":"string"
+                                },
+                                "mustresetpassword":{
+                                    "type":"string"
+                                },
+                                "emailConfirmation":{
+                                    "type":"boolean"
+                                },
+                                "percentage":{
+                                    "type":"number"
+                                },
+                                "enabled":{
+                                    "type":"boolean"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "summary": "Signup the new user",
+                "responses": {
+                    "201    ": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/removeUser/{email}": {
+            "delete": {
+                "tags": [
+                    "Reuser"
+                ],
+                "summary": "remove user by email",
+                "parameters": [
+                    {
+                       "in": "path",
+                       "name": "email",
+                       "schema": {
+                          "type": "string"
+                       },
+                       "required": true
+                    }
+                 ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Reuser"
+                        }
+                    }
+                }      
+            }
+        },
+        "/City/addzipcode": {
+            "post": {
+                "tags": [
+                    "City"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Add new zipcode",
+                        "schema": {
+                            "properties": {
+                                "state":{
+                                    "type":"string"
+                                },
+                                "city":{
+                                    "type":"string"
+                                },
+                                "postalCode":{
+                                    "type":"string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "summary": "Add the new zipcode",
+                "responses": {
+                    "201    ": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/City"
+                        }
+                    }
+                }
+            }    
+        },
+        "/City/listofstates": {
+            "get": {
+                "tags": [
+                    "City"
+                ],
+                "summary": "list all states",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/City"
+                        }
+                    }
+                }
+            }
+        },
+        "/City/listofcities":{
+            "get":{
+                "tags":[
+                    "City"
+                ],
+                "summary":"list all cities",
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "schema":{
+                            "$ref":"#/definitions/City"
+                        }
+                    }
+                }
+            }
+        },
+        "/City/getpostalbycity/{city}": {
+            "get": {
+               "tags":[
+                   "City"
+               ],
+               "summary": "Get postalcode's by city",
+               "parameters": [
+                  {
+                     "in": "path",
+                     "name": "city",
+                     "schema": {
+                        "type": "string"
+                     },
+                     "required": true
+                  }
+               ],
+               "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "$ref": "#/definitions/City"
+                    }
+                }
+              }
+            }
+         },
+         "/City/deletezipcode/{postalCode}": {
+            "delete": {
+                "tags": [
+                    "City"
+                ],
+                "summary": "Delete zipcode by postalcode",
+                "parameters": [
+                    {
+                       "in": "path",
+                       "name": "postalCode",
+                       "schema": {
+                          "type": "string"
+                       },
+                       "required": true
+                    }
+                 ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/City"
+                        }
+                    }
+                }      
+            }
+        },
+        "/assignzipcode/assignzipcode":{
+            "post": {
+                "tags": [
+                    "AssignZipcode"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Assign new zipcode to user",
+                        "schema": {
+                            "properties": {
+                                "city":{
+                                    "type":"string"
+                                },
+                                "state":{
+                                    "type":"string"
+                                },
+                                "userId":{
+                                    "type":"number"
+                                },
+                                "username":{
+                                    "type":"string"
+                                },
+                                "zipcode":{
+                                    "type":"string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "summary": "Assign the new zipcode to user",
+                "responses": {
+                    "201    ": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/assignZipcode"
+                        }
+                    }
+                }
+            }    
+        },
+        "/assignzipcode/getassigneduser/{userId}": {
+            "get": {
+               "tags":[
+                   "AssignZipcode"
+               ],
+               "summary": "Get assigned user by userId",
+               "parameters": [
+                  {
+                     "in": "path",
+                     "name": "userId",
+                     "schema": {
+                        "type": "string"
+                     },
+                     "required": true
+                  }
+               ],
+               "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "$ref": "#/definitions/assignzipcode"
+                    }
+                }
+              }
+            }
+         },
+        "/assignzipcode/getusercities/{state}/{_id}": {
+            "parameters": [
+                {
+                    "name": "state",
+                    "in": "path",
+                    "required": true,
+                    "description": "Entet state",
+                    "type": "string"
+                },
+                {
+                    "name": "_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "Enter id",
+                    "type": "number"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "AssignZipcode"
+                ],
+                "summary": "get user cities by state and id",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/assignZipcode"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            }
+        },
+        "/assignzipcode/deletezipcodebyuser/{username}/{zipcode}": {
+            "parameters": [
+                {
+                    "name": "username",
+                    "in": "path",
+                    "required": true,
+                    "description": "Entet username",
+                    "type": "string"
+                },
+                {
+                    "name": "zipcode",
+                    "in": "path",
+                    "required": true,
+                    "description": "Enter zipcode",
+                    "type": "string"
+                }
+            ],
+            "delete": {
+                "tags": [
+                    "AssignZipcode"
+                ],
+                "summary": "delete assigned zipcode by username and zipcode",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/assignZipcode"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            }
+        }
+    }
+}
